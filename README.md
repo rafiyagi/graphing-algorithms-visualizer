@@ -1,4 +1,8 @@
+# Graphing Algorithms Visualizer
+
 Developed by Rafi Yagudin
+
+![Graphing Algorithms Visualizer](images/graphSimScreenShot.png "Graphing Algorithms Visualizer")
 
 The following application simulates the following algorithms: Breadth First Search (BFS), Depth First Search (DFS), 
 and Prim's Minimum Spanning Tree (MST). All the graphs in use are undirected and weighted.	You can run the 
