@@ -1,0 +1,107 @@
+<html><head>
+	<title>Graphing Algorithms Simulations</title>
+		<meta name="keywords" content="graphing algorithms, Prim's algorithm, BFS, DFS, comp160">
+		<meta name="description" content="BFS,DFS, Prim's Graphing Algorithms Simulations">
+	</head>
+	<body>
+
+		<h1>Graphing Algorithms Simulations</h1>
+		<p>Developed by <a href="mailto:ryagudin@gmail.com">Rafi Yagudin</a></p>
+		<p>
+		The following application simulates the following algorithms: Breadth First Search (BFS), Depth First Search (DFS), and Prim's Minimum Spanning Tree (MST).
+		All the graphs in use are undirected and weighted.	You can run the application in	two modes: instantaneously or step-by-step.
+		See instructions below. The implementation of these algorithms is based off of
+		<a href="http://mitpress.mit.edu/books/introduction-algorithms">Introduction toAlgorithms, third edition</a>
+		by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+		</p>
+
+  <p>
+  All algorithms are coded in JavaScript (jQuery). You can view the source code <a href="main.js">here</a>.
+  </p>
+  <p>
+  This application utilizes the <a href="http://www.arborjs.org">arbor.js</a> JavaScript graph visualization library and
+  the JavaScript <a href="http://www.digitaltsunami.net/projects/javascript/minheap/index.html">MinHeap.js</a> data structure.
+  </p>
+
+		<div id="graphOptions" style="float: left; padding: 10px; width: 300px; overflow: hidden;">
+			<div id="graphAlg" name="graphAlg">
+				<h3>Instructions:</h3>
+				<p><b>1. Select graphing algorithm:</b></p>
+				<select id="selectAlgorithm">
+					<option id="BFS">BFS</option>
+					<option id="DFS">DFS</option>
+					<option id="Prims">Prim's</option>
+				</select>
+			</div><!-- end graphing -->
+
+			<div id="graphOption">
+				<p><b>2. Select graph type:</b></p>
+				<form>
+					<input type="radio" name="graphDensity" class="graphType" value="sparseGraph" checked=""><label>Sparse Graph</label><br>
+					<input type="radio" name="graphDensity" class="graphType" value="denseGraph"><label>Dense Graph</label><br>
+					<input type="radio" name="graphDensity" class="graphType" value="customGraph"><label>Custom Graph</label><br>
+				</form>
+				<div id="customGraph" style="display: none;">
+					<p><b>Create a custom graph by adding edges:</b></p>
+					Node Labels: <input type="text" id="nodeFrom" value="" maxlength="5" style="width: 25px;"> -&gt; <input type="text" id="nodeTo" value="" maxlength="5" style="width: 25px;">
+					<br>
+					Edge Weight: <input type="text" id="edgeWeight" value="" maxlength="5" style="width: 25px;">
+					<br>
+					<button type="button" id="addEdge">Add Edge</button>
+					<p style="font-size: 12px;"> Ex: Inputting A -&gt; B, 10 will create an undirected edge between A and B with a weight of 10. </p>
+				</div>
+			</div><!-- end graphOption -->
+
+			<p><b>3. Start the algorithm - instantly or step-by-step:</b></p>
+			<input type="checkbox" id="stepByStep" name="stepByStep"><label for="stepByStep">Step by step</label>
+			<button id="runAlg" name="runAlg" type="button">Start Algorithm</button>
+			<button id="nextStep" name="nextStep" type="button" style="display:none" disabled="disabled">Next Step</button>
+			<div style="clear:both; display:block;"></div>
+		</div><!-- end graphOptions -->
+
+		<div id="canvasWrapper" style="float: left; margin-left: auto; margin-right: auto; width: 800px; height: 400px; border:1px solid silver;">
+			<canvas id="viewport" width="800" height="400"></canvas>
+		</div>
+
+		<div style="clear: both; display: block;"></div>
+
+		<p>
+		Graph Explanation:
+			</p><ul>
+				<li>
+					BFS: At the end of the algorithm, each node contains its name, how far away it is from the source vertex, and its parent.
+					So a node with a label of "B,1,A" is the Node B that is 1 edge away from the source vertex, and its parent is Node A.
+					The edges highlighted in green show the BFS tree.
+				</li>
+				<li>
+					DFS: At the end of the algorithm, each node contains its name, its start/finish time, and its parent.
+					So a node with a label of "B,2/14,A" is Node B with a start time of 2, a finish time of 14, and its parent is Node A.
+				</li>
+				<li>
+					Prim's: At the end of the algorithm, each node contains its name, its key (i.e. the cheapest edge connect it to the MST), and its parent.
+					So a node with a label of "B, 2, A" is Node B with a key of 2, and its parent is Node A.
+					The edges highlighted in green show the MST.
+				</li>
+			</ul>
+		<p></p>
+		<p>
+			Other Notes:
+			</p><ul>
+				<li>
+					Please use edge weights less than 1000. I initially used Number.MAX_INT for these simulations, but the node labels
+					become absurdly large and unreadable. If you use weights greater than 1000, then Prim's algorithm will not run correctly.
+				</li>
+				<li>
+					I had to modify the MinHeap.js slightly and include an exists() function. This is necessary for Prim's algorithm as it tests for
+					set membership within the min heap for every node it looks at. This is to ensure the MST doesn't form cycles. The exists()
+					function is not efficient - it does a linear search for the particular node.
+				</li>
+		<p></p>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script type="text/javascript" src="./arbor.js"></script>
+		<script type="text/javascript" src="./graphics.js"></script>
+		<script type="text/javascript" src="./renderer.js"></script>
+		<script type="text/javascript" src="./minheap.js"></script>
+		<script type="text/javascript" src="./main.js"></script>
+
+</ul><script type="text/javascript" src="https://www.google.com/adsense/domains/caf.js"></script><script type="text/javascript" src="https://www.google.com/adsense/domains/caf.js"></script></body></html>
